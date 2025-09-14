@@ -22,7 +22,8 @@ public class Curso {
 
     @Override
     public String toString() {
-        return nombre + " (" + creditos + " créditos)";
+        return nombre + " (" + creditos + ")";
     }
 }
+
 

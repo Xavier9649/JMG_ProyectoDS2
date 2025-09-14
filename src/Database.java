@@ -7,6 +7,13 @@ public class Database {
     private static final String USER = "uckcbzgbpi9xcrbe";
     private static final String PASS = "gKGS0svGCMCTSGLwBmuh";
 
+    static {
+        try { Class.forName("com.mysql.cj.jdbc.Driver"); }
+        catch (ClassNotFoundException e) {
+            throw new RuntimeException("Driver MySQL no encontrado en el classpath", e);
+        }
+    }
+
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASS);
     }
