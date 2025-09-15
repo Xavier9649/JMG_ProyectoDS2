@@ -26,7 +26,7 @@ public class Estudiante {
     public void setEmail(String email) { this.email = email; }
 
     @Override
-    public String toString() {
+    public String toString() {//Metodo usado para mostrar el estudiante en el JComboBox
         return nombres + " (" + cedula + ")";
     }
 }

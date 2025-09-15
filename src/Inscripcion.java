@@ -28,7 +28,7 @@ public class Inscripcion {
     public void setFecha(LocalDate fecha) { this.fecha = fecha; }
 
     @Override
-    public String toString() {
+    public String toString() {//Metodo usado para mostrar la inscripcion en el JComboBox
         return estudiante + " -> " + curso + " [" + fecha + "]";
     }
 }

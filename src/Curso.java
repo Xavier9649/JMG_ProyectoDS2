@@ -21,7 +21,7 @@ public class Curso {
     public void setCreditos(int creditos) { this.creditos = creditos; }
 
     @Override
-    public String toString() {
+    public String toString() { //Este método se usa para mostrar el curso en el JComboBox
         return nombre + " (" + creditos + ")";
     }
 }

@@ -3,8 +3,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.sql.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main extends JFrame {
     // Campos UI
@@ -27,13 +25,13 @@ public class Main extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(900, 560);
         setLocationRelativeTo(null);
-        initLayout();
+        iniciarInterfaz();
         cargarCursos();
         cargarTabla();
-        wireEvents();
+        mostrarDatosArriba();
     }
 
-    private void initLayout() {
+    private void iniciarInterfaz() {
         setLayout(new BorderLayout());
 
         JPanel form = new JPanel(new GridLayout(2, 1, 10, 10));
@@ -92,7 +90,8 @@ public class Main extends JFrame {
         });
     }
 
-    private void wireEvents() {
+    private void mostrarDatosArriba() { //Este metodo muestra los datos seleccionados en la parte superior
+        // para despues actualizarlos o eliminarlos.
         tabla.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting() && tabla.getSelectedRow() >= 0) {
                 int row = tabla.getSelectedRow();
@@ -107,7 +106,6 @@ public class Main extends JFrame {
         });
     }
 
-    /* ==================== CARGAS ==================== */
 
     private void cargarCursos() {
         comboCurso.removeAllItems();
@@ -124,6 +122,7 @@ public class Main extends JFrame {
         } catch (Exception e) { mostrarError(e); }
     }
 
+    //CRUD
     private void cargarTabla() {
         modelo.setRowCount(0);
         String sql = """
@@ -161,8 +160,6 @@ public class Main extends JFrame {
         } catch (Exception e) { mostrarError(e); }
     }
 
-
-    /* ==================== CRUD ==================== */
 
     private void agregar() throws Exception {
         String ced = txtCedula.getText().trim();
@@ -243,7 +240,7 @@ public class Main extends JFrame {
         }
     }
 
-    /* ==================== Helpers ==================== */
+    //Metodos auxiliares
 
     private void limpiarFormulario() {
         idInscripcionSel = null;
@@ -265,7 +262,7 @@ public class Main extends JFrame {
         JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    /* ==================== MAIN ==================== */
+    //Método main
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Main().setVisible(true));
